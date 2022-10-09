@@ -23,15 +23,16 @@ console.log(coins)
 const filterSearch = coins.filter(coin => coin.name.toLowerCase().includes(search.toLowerCase()))
 
   return (
-    <div className="App">
-      <h2 className='text-xl font-bold text-primary'>Hello API!!</h2>
-      <form>
-      <input onChange={handleSearch} type="text" placeholder="Search" className="input input-bordered input-primary w-full max-w-xs" />
+    <div className="App bg-slate-900	">
+      <form className='text-center py-12'>
+      <input onChange={handleSearch} type="text" placeholder="Search" className="input input-bordered input-primary w-full  max-w-xs 
+      bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white"/>
       </form>
+      <div>
 
       {
         filterSearch.map(coin => {
-          console.log('coin',coin.name)
+          console.log('coin',coin)
           return (
             <CoinDisplay 
             key={coin.id}
@@ -41,10 +42,13 @@ const filterSearch = coins.filter(coin => coin.name.toLowerCase().includes(searc
             symbol={coin.symbol}
             priceChange={coin.price_change_percentage_24h}
             currentPrice={coin.current_price}
+            marketCap={coin.market_cap}
+            
             />
           )
         })
       }
+      </div>
 
     </div>
   );
