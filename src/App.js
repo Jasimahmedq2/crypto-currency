@@ -5,8 +5,9 @@ import CoinDisplay from './CoinDisplay';
 
 function App() {
   const [coins, setCoins] = useState([])
+
   const [search, setSearch] = useState('')
-console.log(coins)
+  console.log('coins', coins)
   const handleSearch = (e) => {
     setSearch(e.target.value)
   }
@@ -19,35 +20,47 @@ console.log(coins)
     })
   }, [])
 
-  
-const filterSearch = coins.filter(coin => coin.name.toLowerCase().includes(search.toLowerCase()))
+
+  const filterSearch = coins.filter(coin => coin.name.toLowerCase().includes(search.toLowerCase()))
+  console.log(filterSearch)
 
   return (
-    <div className="App bg-slate-900	">
+    <div className="App bg-slate-900">
       <form className='text-center py-12'>
-      <input onChange={handleSearch} type="text" placeholder="Search" className="input input-bordered input-primary w-full  max-w-xs 
+        <input onChange={handleSearch} type="text" placeholder="Search" className="input input-bordered input-primary w-full  max-w-xs 
       bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white"/>
       </form>
       <div>
 
-      {
-        filterSearch.map(coin => {
-          console.log('coin',coin)
-          return (
-            <CoinDisplay 
-            key={coin.id}
-            volume={coin.total_volume}
-            name={coin.name}
-            image={coin.image}
-            symbol={coin.symbol}
-            priceChange={coin.price_change_percentage_24h}
-            currentPrice={coin.current_price}
-            marketCap={coin.market_cap}
-            
-            />
-          )
-        })
-      }
+
+        {
+          filterSearch.length === 0  ? <h2 className='text-xl text-white font-bold text-center'>not match in query</h2>
+
+            :
+
+
+            filterSearch.map(coin => {
+              return (
+
+                <CoinDisplay
+                  key={coin.id}
+                  volume={coin.total_volume}
+                  name={coin.name}
+                  image={coin.image}
+                  symbol={coin.symbol}
+                  priceChange={coin.price_change_percentage_24h}
+                  currentPrice={coin.current_price}
+                  marketCap={coin.market_cap}
+
+                />
+
+
+              )
+            })
+
+        }
+
+
       </div>
 
     </div>

@@ -2,7 +2,6 @@ import React from 'react';
 
 const CoinDisplay = ({ image, name, symbol, currentPrice, priceChange, volume, marketCap}) => {
 
-console.log('name',name)
   return (
 
       <div className="w-4/5 mx-auto my-16">
